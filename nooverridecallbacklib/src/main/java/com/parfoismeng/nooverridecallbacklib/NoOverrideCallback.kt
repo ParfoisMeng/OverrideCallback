@@ -11,7 +11,7 @@ import com.parfoismeng.nooverridecallbacklib.callback.ActivityResultListener
  * time   : 2020-01-02
  * desc   : ...
  */
-class NoOverrideCallback(activity: FragmentActivity) {
+class NoOverrideCallback private constructor(activity: FragmentActivity) {
     private var fragmentLazy: Lazy<TransferFragment?>? = null
 
     init {
@@ -19,9 +19,9 @@ class NoOverrideCallback(activity: FragmentActivity) {
     }
 
     fun startActivity4Callback(
-        intent: Intent,
-        onActivityResultMethod: ((resultCode: Int, data: Intent?) -> Unit)? = null,
-        onFailedMethod: ((throwable: Throwable?) -> Unit)? = null
+            intent: Intent,
+            onActivityResultMethod: ((resultCode: Int, data: Intent?) -> Unit)? = null,
+            onFailedMethod: ((throwable: Throwable?) -> Unit)? = null
     ) {
         startActivity4Callback(intent, object : ActivityResultListener {
             override fun onActivityResult(resultCode: Int, data: Intent?) {
@@ -34,6 +34,7 @@ class NoOverrideCallback(activity: FragmentActivity) {
         })
     }
 
+    @JvmOverloads
     fun startActivity4Callback(intent: Intent, listener: ActivityResultListener? = null) {
         fragmentLazy?.get()?.startActivity4Callback(intent, listener)
     }
@@ -68,6 +69,9 @@ class NoOverrideCallback(activity: FragmentActivity) {
 
     companion object {
         private val TAG: String = NoOverrideCallback::class.java.simpleName
+
+        @JvmStatic
+        fun with(activity: FragmentActivity) = NoOverrideCallback(activity)
     }
 
     @FunctionalInterface
