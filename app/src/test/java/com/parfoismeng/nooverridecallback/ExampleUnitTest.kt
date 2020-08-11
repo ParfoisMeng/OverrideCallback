@@ -1,4 +1,4 @@
-package com.parfoismeng.nooverridecallback
+package com.parfoismeng.OverrideCallback
 
 import org.junit.Test
 

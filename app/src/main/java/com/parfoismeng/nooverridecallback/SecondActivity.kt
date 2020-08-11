@@ -1,4 +1,4 @@
-package com.parfoismeng.nooverridecallback
+package com.parfoismeng.OverrideCallback
 
 import android.app.Activity
 import android.content.Intent
@@ -16,7 +16,7 @@ class SecondActivity : AppCompatActivity() {
 
         val data = intent?.getStringExtra("DATA")
         textViewDesc.text = (data +
-                "\n此页面未使用过NoOverrideCallback" +
+                "\n此页面未使用过OverrideCallback" +
                 "\nfragment count = " + supportFragmentManager.fragments.size)
         textViewTestInitUtils.setOnClickListener {
             start4Callback(Intent().apply {
@@ -25,7 +25,7 @@ class SecondActivity : AppCompatActivity() {
             })
 
             textViewDesc.text = (data +
-                    "\n此页面已使用NoOverrideCallback" +
+                    "\n此页面已使用OverrideCallback" +
                     "\nfragment count = " + supportFragmentManager.fragments.size)
         }
 

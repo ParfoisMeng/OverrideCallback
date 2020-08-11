@@ -1,2 +1,2 @@
-include ':app', ':nooverridecallbacklib'
-rootProject.name='NoOverrideCallback'
+include ':app', ':override_callback'
+rootProject.name='OverrideCallback'

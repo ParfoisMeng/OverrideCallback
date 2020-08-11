@@ -7,16 +7,16 @@ import androidx.fragment.app.FragmentManager
 import com.parfoismeng.override.callback.fragment.TransferFragment
 
 fun FragmentActivity.start4Callback(block: (fragment: Fragment, requestCode: Int) -> Unit, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null) {
-    NoOverrideCallback(this).start4Callback(block = block, callback = callback)
+    OverrideCallback(this).start4Callback(block = block, callback = callback)
 }
 
 fun FragmentActivity.start4Callback(intent: Intent, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null) {
-    NoOverrideCallback(this).start4Callback(intent = intent, callback = callback)
+    OverrideCallback(this).start4Callback(intent = intent, callback = callback)
 }
 
-private class NoOverrideCallback constructor(activity: FragmentActivity) {
+private class OverrideCallback constructor(activity: FragmentActivity) {
     companion object {
-        private val TAG: String = NoOverrideCallback::class.java.simpleName
+        private val TAG: String = OverrideCallback::class.java.simpleName
     }
 
     fun start4Callback(intent: Intent? = null, block: ((fragment: Fragment, requestCode: Int) -> Unit)? = null, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null) {

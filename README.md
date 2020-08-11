@@ -1,10 +1,10 @@
-# NoOverrideCallback
-不用继承方法，直接以回调形式启动。现已支持 `startActivityForResult-onActivityResult` 对应逻辑。  [![JitPack](https://jitpack.io/v/ParfoisMeng/NoOverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/NoOverrideCallback)
+# OverrideCallback
+不用继承方法，直接以回调形式启动。现已支持 `startActivityForResult-onActivityResult` 对应逻辑。  [![JitPack](https://jitpack.io/v/ParfoisMeng/OverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/OverrideCallback)
 
 - - - - - 
 
 ### 使用
- - 引用类库 *请将last-version替换为最新版本号 [![](https://jitpack.io/v/ParfoisMeng/NoOverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/NoOverrideCallback)
+ - 引用类库 *请将last-version替换为最新版本号 [![](https://jitpack.io/v/ParfoisMeng/OverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/OverrideCallback)
 ```
     // 1.添加jitpack仓库
     allprojects {
@@ -15,7 +15,7 @@
     }
     // 2.添加项目依赖（last-version替换为最新版本号）
     dependencies {
-        implementation 'com.github.ParfoisMeng:NoOverrideCallback:last-version'
+        implementation 'com.github.ParfoisMeng:OverrideCallback:last-version'
     }
 ```
 

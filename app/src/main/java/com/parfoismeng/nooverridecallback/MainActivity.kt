@@ -1,4 +1,4 @@
-package com.parfoismeng.nooverridecallback
+package com.parfoismeng.OverrideCallback
 
 import android.app.Activity
 import android.content.Intent
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        textViewDesc.text = ("初始状态，未使用过NoOverrideCallback\nfragment count = " + supportFragmentManager.fragments.size)
+        textViewDesc.text = ("初始状态，未使用过OverrideCallback\nfragment count = " + supportFragmentManager.fragments.size)
 
         if (intent.getBooleanExtra("isSecondTestInitUtils", false)) {
             textView.apply {
