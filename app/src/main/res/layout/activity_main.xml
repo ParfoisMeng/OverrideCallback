@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#30000000"
         android:padding="10dp"
-        android:text="startActivity4Callback" />
+        android:text="start4Callback\nuse intent" />
 
     <TextView
         android:id="@+id/textViewDesc"
@@ -25,4 +25,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView4Func"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#30000000"
+        android:padding="10dp"
+        android:text="start4Callback\nuse block" />
 </LinearLayout>

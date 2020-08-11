@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.parfoismeng.nooverridecallbacklib.NoOverrideCallback
+import com.parfoismeng.override.callback.start4Callback
 import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
@@ -19,11 +19,10 @@ class SecondActivity : AppCompatActivity() {
                 "\n此页面未使用过NoOverrideCallback" +
                 "\nfragment count = " + supportFragmentManager.fragments.size)
         textViewTestInitUtils.setOnClickListener {
-            NoOverrideCallback.with(this@SecondActivity)
-                    .startActivity4Callback(Intent().apply {
-                        setClass(this@SecondActivity, MainActivity::class.java)
-                        putExtra("isSecondTestInitUtils", true)
-                    })
+            start4Callback(Intent().apply {
+                setClass(this@SecondActivity, MainActivity::class.java)
+                putExtra("isSecondTestInitUtils", true)
+            })
 
             textViewDesc.text = (data +
                     "\n此页面已使用NoOverrideCallback" +

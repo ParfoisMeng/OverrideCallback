@@ -1,5 +1,5 @@
 # NoOverrideCallback
-拒绝覆盖方法，直接接口回调！onActivityResult / onRequestPermissionsResult / ... ，调用方法传入Callback多直接！  [![JitPack](https://jitpack.io/v/ParfoisMeng/NoOverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/NoOverrideCallback)
+不用继承方法，直接以回调形式启动。现已支持 `startActivityForResult-onActivityResult` 对应逻辑。  [![JitPack](https://jitpack.io/v/ParfoisMeng/NoOverrideCallback.svg)](https://jitpack.io/#ParfoisMeng/NoOverrideCallback)
 
 - - - - - 
 
@@ -21,28 +21,27 @@
 
 - 代码
 ```
-    // 将 activity.startActivityForResult 替换成下面的方式
-    NoOverrideCallback.with(this)
-            .startActivity4Callback(new Intent(), new ActivityResultListener() {
-                @Override
-                public void onActivityResult(int resultCode, @Nullable Intent data) {
-                    // TODO 正常情况
-                }
+    // 将 startActivityForResult 替换成下面的调用，提供 2 种模式，适应更多情况
+    FragmentActivity.start4Callback(otherStart: (fragment: Fragment, code: Int) -> Unit, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null)
+    FragmentActivity.start4Callback(intent: Intent, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null)
 
-                @Override
-                public void onFailed(@Nullable Throwable throwable) {
-                    // TODO 异常情况
-                }
-            });
-
-    // startActivity4Callback 的 Kotlin 优化写法如下：
-    startActivity4Callback(
-            intent: Intent,
-            onActivityResultMethod: ((resultCode: Int, data: Intent?) -> Unit)? = null,
-            onFailedMethod: ((throwable: Throwable?) -> Unit)? = null
+    // 源码示例
+    // intent 对象
+    val intent = Intent(this, clz)
+    // 调用方式 1 直接传入 intent 对象
+    start4Callback(
+            intent = intent,
+            callback = { resultCode, data ->
+                // do onActivityResult
+            }
     )
-
-    // 示例请查看源码
+    // 调用方式 2 在 block 中用指定参数构造 startActivityForResult
+    start4Callback(
+            block = { fragment, requestCode -> fragment.startActivityForResult(intent, requestCode) },
+            callback = { resultCode, data ->
+                // do onActivityResult
+            }
+    )
 ```
 
 ### 感谢
@@ -50,6 +49,7 @@
 - [InlineActivityResult](https://github.com/florent37/InlineActivityResult)
 
 ### 更新
+* 大幅更新，Kotlin 更好用 - 2.0
 * 初版发布 - 1.0.0
 
 ### 计划
