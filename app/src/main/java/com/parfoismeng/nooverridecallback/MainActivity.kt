@@ -39,7 +39,13 @@ class MainActivity : AppCompatActivity() {
         }
         textView4Func.setOnClickListener {
             start4Callback(
-                    block = { fragment, requestCode -> fragment.startActivityForResult(testIntent, requestCode) },
+                    block = { fragment, requestCode ->
+                        val intent = Intent().apply {
+                            setClass(fragment.requireContext(), SecondActivity::class.java)
+                            putExtra("DATA", "------ Call No.${++count} ------")
+                        }
+                        fragment.startActivityForResult(intent, requestCode)
+                    },
                     callback = { resultCode, data ->
                         val resultCodeString = when (resultCode) {
                             Activity.RESULT_OK -> "RESULT_OK"

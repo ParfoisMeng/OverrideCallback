@@ -26,18 +26,20 @@
     FragmentActivity.start4Callback(intent: Intent, callback: ((resultCode: Int, data: Intent?) -> Unit)? = null)
 
     // 源码示例
-    // intent 对象
+    // 1: 直接传入 intent 对象
     val intent = Intent(this, clz)
-    // 调用方式 1 直接传入 intent 对象
     start4Callback(
-            intent = intent,
+            intent = Intent(this, clz),
             callback = { resultCode, data ->
                 // do onActivityResult
             }
     )
-    // 调用方式 2 在 block 中用指定参数构造 startActivityForResult
+    // 2: 在 block 中用指定参数构造并调用 startActivityForResult
     start4Callback(
-            block = { fragment, requestCode -> fragment.startActivityForResult(intent, requestCode) },
+            block = { fragment, requestCode ->
+                val intent = Intent(fragment.requireContext(), clz)
+                fragment.startActivityForResult(intent, requestCode)
+            },
             callback = { resultCode, data ->
                 // do onActivityResult
             }
@@ -49,6 +51,7 @@
 - [InlineActivityResult](https://github.com/florent37/InlineActivityResult)
 
 ### 更新
+* 更换包名类名 - 2.0.1
 * 大幅更新，Kotlin 更好用 - 2.0
 * 初版发布 - 1.0.0
 
